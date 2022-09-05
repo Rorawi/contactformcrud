@@ -20,7 +20,7 @@ props.deleteUser(props.userInfo.id)
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <EditUserForm editUser={props.editUser} prefill={props.userInfo} closeModal={handleClose} className='form'/>
+          <EditUserForm editUser={props.editUser} prefill={props.userInfo} closeModal={handleClose} className='modalform'/>
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

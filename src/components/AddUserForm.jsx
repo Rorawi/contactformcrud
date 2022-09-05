@@ -20,14 +20,14 @@ const AddUserForm = (props) => {
             <h3 className='title'>Contact Form</h3>
                 <Form.Group className="mb-3" controlId="formBasicEmail" >
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" value={name}onChange={(e) =>{
+                    <Form.Control type="text" placeholder="Enter name" value={name}onChange={(e) =>{
                         setName(e.target.value);
                     }} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Phone Number</Form.Label>
-                    <Form.Control type="number" value={phonenumber} placeholder="Enter email"  onChange={(e) =>{
+                    <Form.Control type="number" value={phonenumber} placeholder="Enter number"  onChange={(e) =>{
                         setPhoneNumber(e.target.value);
                     }}/>
                 </Form.Group>
