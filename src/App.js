@@ -78,5 +78,3 @@ const AddNewUser =(info)=>{
 }
 
 export default App;
-
-
