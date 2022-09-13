@@ -3,7 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Users  from "./components/Users";
 import AddUserForm from "./components/AddUserForm";
 import { Container,Row,Col } from 'react-bootstrap';
+import {connect} from 'react-redux'
 import './components/myStyles.css'
+import addUser from './store/usersActions'
 
 function App() {
   const [user, setUser] = useState([
@@ -77,4 +79,13 @@ const AddNewUser =(info)=>{
   );
 }
 
-export default App;
+const mapStateToProps =(state) => ({
+      user:state.user
+})
+
+const mapDispatchToProps ={
+      addUser:addUser
+}
+
+export default connect (mapStateToProps,mapDispatchToProps)( App);
+
