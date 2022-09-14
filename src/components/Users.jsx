@@ -1,17 +1,17 @@
 import React from 'react';
 import User from "./User";
-// import EditUserForm from "./EditUserForm";
 import { Container, Row } from "react-bootstrap";
+import { connect } from 'react-redux'
 
 const Users = (props) => {
     return (
         <div>
             <Container>
                 <Row>
-                    {props.userData.map((info) => {
+                    {props.users.map((info,index) => {
                         return (
                             <User userInfo={info}
-                                  key={info.id}
+                                  key={index}
                                   deleteUser={props.deleteUser}
                                   editUser={props.editUser}/>
                         )
@@ -22,4 +22,8 @@ const Users = (props) => {
     );
 }
 
-export default Users;
+const mapStateToProps =(state) => ({
+    users:state.user
+})
+
+export default connect(mapStateToProps)(Users);

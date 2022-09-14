@@ -1,7 +1,8 @@
 import React,{ useState} from 'react';
 import {Button, Card,Col,Modal} from 'react-bootstrap'
 import EditUserForm from './EditUserForm';
-
+ import { connect } from "react-redux";
+import { deleteUser } from '../store/usersActions';
 const User = (props) => {
 
   const [show, setShow] = useState(false);
@@ -11,6 +12,7 @@ const User = (props) => {
 
 const HandleDelete =(e)=> {
   e.preventDefault();
+// props.deleteUser(props.userInfo.id)  /*this line of code is for the one without redux */
 props.deleteUser(props.userInfo.id)
 }
     return (
@@ -49,4 +51,8 @@ props.deleteUser(props.userInfo.id)
     );
 }
 
-export default User;
+const mapDispatch = {
+  deleteUser,
+}
+
+export default connect(null,mapDispatch)(User);

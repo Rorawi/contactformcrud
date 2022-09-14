@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { connect } from "react-redux";
+import { addUser } from "../store/usersActions";
+import {v4 as uuid} from "uuid"
 
 
 const AddUserForm = (props) => {
@@ -9,11 +12,13 @@ const AddUserForm = (props) => {
 
     const handleClick = (e)=> {
         e.preventDefault();
-        props.newUser({ name, phonenumber, location });
+        let newUser = { name: name, phonenumber: phonenumber, location: location, id: uuid() };
+        props.addUser(newUser);
+        // props.newUser({ name, phonenumber, location });
         setName("");
         setPhoneNumber("");
         setLocation("")
-    }
+    } 
     return (
         <div>
             <Form className='form'>
@@ -47,4 +52,9 @@ const AddUserForm = (props) => {
     );
 }
 
-export default AddUserForm;
+const mapDispatch = {
+    addUser,
+}
+
+
+export default connect(null,mapDispatch)(AddUserForm);
