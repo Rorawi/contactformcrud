@@ -20,18 +20,18 @@ function App() {
   //     location: 'Hamburg',
   //     id:'nsbwqbdqnb'
   //   }
-  // ]
+  // ] /*THESE LINES OF CODES ARE WITHOUT REDUX */
   );
 
 
-  const deleteUser = (id) => {
-		setUser(user.filter((user) => {
-				if (user.id !== id) {
-					return user;
-				}
-			})
-		);
-	};
+  // const deleteUser = (id) => {
+	// 	setUser(user.filter((user) => {
+	// 			if (user.id !== id) {
+	// 				return user;
+	// 			}
+	// 		})
+	// 	);
+	// }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
 
   // const editUser = (id)=>{
   //   setUser(user.map((id,updateUser)=> user.id === id ? updateUser : user))
@@ -41,23 +41,23 @@ function App() {
   //   setUser(user.map((id,updateUser)=> user.id === id ? updateUser : user))
   // }
 
-  const editUser = (id, newData) => {
-		setUser(
-			user.map((user) => {
-				if (user.id === id) {
-					return newData;
-				}
-				return user;
-			})
-		);
-	};
+  // const editUser = (id, newData) => {
+	// 	setUser(
+	// 		user.map((user) => {
+	// 			if (user.id === id) {
+	// 				return newData;
+	// 			}
+	// 			return user;
+	// 		})
+	// 	);
+	// }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
 
 
-const AddNewUser =(info)=>{
-  info.id = Math.random().toString();
-  setUser([...user,info])
-  console.log(AddNewUser);
-}
+// const AddNewUser =(info)=>{
+//   info.id = Math.random().toString();
+//   setUser([...user,info])
+//   console.log(AddNewUser);
+// }
 
 
   return (
@@ -65,11 +65,18 @@ const AddNewUser =(info)=>{
   <Container className='container'>
     <Row>
       <Col xm={4}>
-        <AddUserForm newUser={AddNewUser} className="dataflex"/>
+        <AddUserForm 
+        // newUser={AddNewUser}  /*THIS LINE OF CODES IS WITHOUT REDUX */
+        className="dataflex"
+        />
       </Col>
       {/* <Col></Col> */}
       <Col xm={8}>
-      <Users userData={user} deleteUser={deleteUser} editUser={editUser}/>
+      <Users 
+      // userData={user} 
+      // deleteUser={deleteUser}
+      //  editUser={editUser}  /*THESE LINES OF CODES ARE WITHOUT REDUX */
+       />
       </Col>
     </Row>
   </Container>

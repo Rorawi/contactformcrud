@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { addUser } from "../store/usersActions";
 import {v4 as uuid} from "uuid"
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from "../firebase/config"
 
 
 const AddUserForm = (props) => {
@@ -10,14 +12,20 @@ const AddUserForm = (props) => {
     const [phonenumber, setPhoneNumber] = useState("");
     const [location, setLocation] = useState("");
 
-    const handleClick = (e)=> {
+    const handleClick = async(e)=> {
         e.preventDefault();
         let newUser = { name: name, phonenumber: phonenumber, location: location, id: uuid() };
-        props.addUser(newUser);
+       // props.addUser(newUser);
         // props.newUser({ name, phonenumber, location });
+
+        await setDoc(doc(db, "users", newUser.id),newUser);
         setName("");
         setPhoneNumber("");
         setLocation("")
+          
+
+          
+      
     } 
     return (
         <div>

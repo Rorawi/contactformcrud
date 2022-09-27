@@ -14,6 +14,7 @@ const HandleDelete =(e)=> {
   e.preventDefault();
 // props.deleteUser(props.userInfo.id)  /*this line of code is for the one without redux */
 props.deleteUser(props.userInfo.id)
+
 }
     return (
         <div>
