@@ -6,7 +6,7 @@ import { Container,Row,Col } from 'react-bootstrap';
 import './components/myStyles.css'
 
 function App() {
-  const [user, setUser] = useState(
+ // const [user, setUser] = useState(
   //  [
   //   {
   //     name:'Winifred',
@@ -21,7 +21,7 @@ function App() {
   //     id:'nsbwqbdqnb'
   //   }
   // ] /*THESE LINES OF CODES ARE WITHOUT REDUX */
-  );
+  //);
 
 
   // const deleteUser = (id) => {
