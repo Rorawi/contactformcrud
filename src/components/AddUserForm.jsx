@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { addUser } from "../store/usersActions";
 import {v4 as uuid} from "uuid"
-import { doc, setDoc,collection,addDoc,serverTimestamp } from "firebase/firestore"; 
+import { doc, setDoc,serverTimestamp } from "firebase/firestore"; 
 import { db } from "../firebase/config"
 
 

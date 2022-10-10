@@ -1,10 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Users  from "./components/Users";
 import AddUserForm from "./components/AddUserForm";
 import { Container,Row,Col } from 'react-bootstrap';
 import './components/myStyles.css'
-import { collection, query, onSnapshot,orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot } from "firebase/firestore";
 import { useDispatch } from "react-redux"
 import { db } from './firebase/config';
 import {addUser} from "../src/store/usersActions"
