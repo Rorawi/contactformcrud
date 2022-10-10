@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import { connect } from "react-redux";
 import { addUser } from "../store/usersActions";
 import {v4 as uuid} from "uuid"
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc,collection,addDoc,serverTimestamp } from "firebase/firestore"; 
 import { db } from "../firebase/config"
 
 
@@ -14,11 +14,14 @@ const AddUserForm = (props) => {
 
     const handleClick = async(e)=> {
         e.preventDefault();
-        let newUser = { name: name, phonenumber: phonenumber, location: location, id: uuid() };
+        let newUser = { name: name, phonenumber: phonenumber, location: location, id: uuid(),timestamp:serverTimestamp() };
        // props.addUser(newUser);
         // props.newUser({ name, phonenumber, location });
 
-        await setDoc(doc(db, "users", newUser.id),newUser);
+       try { await setDoc(doc(db, "users", newUser.id),newUser);
+       } catch (e) {
+        console.log(e);
+       }
         setName("");
         setPhoneNumber("");
         setLocation("")

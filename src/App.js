@@ -1,11 +1,37 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Users  from "./components/Users";
 import AddUserForm from "./components/AddUserForm";
 import { Container,Row,Col } from 'react-bootstrap';
 import './components/myStyles.css'
+import { collection, query, onSnapshot,orderBy } from "firebase/firestore";
+import { useDispatch } from "react-redux"
+import { db } from './firebase/config';
+import {addUser} from "../src/store/usersActions"
 
 function App() {
+  const dispatch = useDispatch()
+useEffect(()=> {
+    const readData =async()=> {
+      const q = query(collection(db, "users"));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const usersArr = [];
+        querySnapshot.forEach((doc) => {
+           usersArr.push(doc.data());
+        });
+       dispatch(addUser(usersArr))
+       console.log(usersArr);
+      });
+    };
+    readData()
+},[]
+)
+
+
+
+
+
+
  // const [user, setUser] = useState(
   //  [
   //   {
