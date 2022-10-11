@@ -3,22 +3,29 @@ import {Form,Button  } from 'react-bootstrap';
 import { editUsers } from '../store/usersActions';
 // import { connect } from "react-redux"
 import { useDispatch } from "react-redux";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
 
 const EditUserForm = (props) => {
     const [name, setName] = useState(props.prefill.name);
     const [phonenumber, setPhoneNumber] = useState(props.prefill.phonenumber);
     const [location, setLocation] = useState(props.prefill.location);
+    const [id, setId] = useState(props.prefill.id);
     const dispatch = useDispatch()
 
-    const handleClick = (e)=> {
+    const handleClick = async(e)=> {
         e.preventDefault();
-        // props.editUser(props.prefill.id,{ name, phonenumber, location });
         dispatch(editUsers({ id: props.prefill.id, name, location, phonenumber }));
-        // props.editUsers(props.prefill.id,{ name, phonenumber, location });
         setName("");
         setPhoneNumber("");
         setLocation("")
         props.closeModal();
+        let newUser = {
+            name,location,phonenumber,id
+        }
+
+const userRef = doc(db, "users", newUser.id);
+await updateDoc(userRef, newUser);
     }
 
 
