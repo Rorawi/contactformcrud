@@ -2,6 +2,7 @@
 * {
     padding: 0;
     margin: auto;
+    background: rgb(242,243,247);
 }
 
 .form {
@@ -49,4 +50,38 @@
     /* height: 60vh; */
     border-radius: 20px;
     font-family: 'Kanit', sans-serif;
+}
+
+.register-login {
+    margin-top: 100px;
+    padding: 25px;
+    max-width: 400px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: rgb(242,243,247);
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.091),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.847);
+}
+.input {
+    background: rgb(242,243,247);
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.091),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.847);
+    border: 0;
+}
+
+.input:focus {
+    box-shadow: inset 6px 6px 10px -1px rgba(0, 0, 0, 0.091),
+    inset -6px -6px 10px -1px rgba(255, 255, 255, 0.847);
+}
+
+.register-login h1 {
+    text-align: center;
+    margin: -42px -20px 50px;
+    background-image: url(./journey.png);
+    padding: 20px 0;
+    border-radius: 5px;
+}
+
+.google-btn {
+    margin: 20px;
 }

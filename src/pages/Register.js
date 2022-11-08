@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import {Container,Row,Col }from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from '../firebase/config'
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
 const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -37,20 +39,19 @@ const Register = () => {
     }
     return (
         <div>
-            <Form>
-                <h1>REGISTER HERE</h1>
+           <Container>
+            <Row>
+                <Col xs={3}></Col>
+                <Col xs={6} className='register-login'>
+                    <h1>REGISTER HERE</h1>
+                <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={email}
+                    <Form.Control type="email" placeholder="Enter email" className='input' value={email}
                         onChange={(e) => setEmail(e.target.value)} />
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password}
+                    <Form.Control type="password" placeholder="Password" className='input' value={password}
                         onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
 
@@ -58,9 +59,14 @@ const Register = () => {
                     Submit
                 </Button>
 
-                <Button onClick={google} variant='info'>Login with google</Button>
+                <Button onClick={google} variant='info' className='google-btn'>Login with google</Button>
             </Form>
-        </div>
+
+                </Col>
+                <Col xs={3}></Col>
+            </Row>
+            </Container>      
+              </div>
     );
 }
 
