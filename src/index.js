@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import { legacy_createStore as createStore} from 'redux';
 // import UsersReducer from './reducer/usersReducer';
-import { Provider } from 'react-redux';
-import Store from "./store/store"
+import { Provider } from "react-redux";
+import { Store, persistor } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={Store}>
-      <App />
+    <PersistGate loading={null} persistor={persistor}>
+				<App />
+			</PersistGate>
     </Provider>
   </React.StrictMode>
 );

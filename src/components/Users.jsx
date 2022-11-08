@@ -23,7 +23,7 @@ const Users = (props) => {
 }
 
 const mapStateToProps =(state) => ({
-    users:state.user
+    users:state.UsersReducer.user
 })
 
 export default connect(mapStateToProps)(Users);

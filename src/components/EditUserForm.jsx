@@ -15,7 +15,7 @@ const EditUserForm = (props) => {
 
     const handleClick = async(e)=> {
         e.preventDefault();
-        dispatch(editUsers({ id: props.prefill.id, name, location, phonenumber }));
+        // dispatch(editUsers({ id: props.prefill.id, name, location, phonenumber }));
         setName("");
         setPhoneNumber("");
         setLocation("")

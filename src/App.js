@@ -1,38 +1,51 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Users  from "./components/Users";
+import Users from "./components/Users";
 import AddUserForm from "./components/AddUserForm";
-import { Container,Row,Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './components/myStyles.css'
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { useDispatch } from "react-redux"
-import { db } from './firebase/config';
-import {addUser} from "../src/store/usersActions"
+import { db, auth } from './firebase/config';
+import { addUser } from "../src/store/usersActions"
+import Routing from './Routing';
+import { loggedInUser } from './store/authAction'
+import { onAuthStateChanged } from "firebase/auth";
+
 
 function App() {
   const dispatch = useDispatch()
-useEffect(()=> {
-    const readData =async()=> {
+  useEffect(() => {
+    const readData = async () => {
       const q = query(collection(db, "users"));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const usersArr = [];
         querySnapshot.forEach((doc) => {
-           usersArr.push(doc.data());
+          usersArr.push(doc.data());
         });
-       dispatch(addUser(usersArr))
-       console.log(usersArr);
+        dispatch(addUser(usersArr))
+        console.log(usersArr);
       });
     };
     readData()
-},[]
-)
+  }, []
+  )
+
+
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) dispatch(loggedInUser(user))
+      else { dispatch(loggedInUser(null)) }
+    })
+  }, [])
 
 
 
 
 
 
- // const [user, setUser] = useState(
+  // const [user, setUser] = useState(
   //  [
   //   {
   //     name:'Winifred',
@@ -51,13 +64,13 @@ useEffect(()=> {
 
 
   // const deleteUser = (id) => {
-	// 	setUser(user.filter((user) => {
-	// 			if (user.id !== id) {
-	// 				return user;
-	// 			}
-	// 		})
-	// 	);
-	// }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
+  // 	setUser(user.filter((user) => {
+  // 			if (user.id !== id) {
+  // 				return user;
+  // 			}
+  // 		})
+  // 	);
+  // }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
 
   // const editUser = (id)=>{
   //   setUser(user.map((id,updateUser)=> user.id === id ? updateUser : user))
@@ -68,45 +81,30 @@ useEffect(()=> {
   // }
 
   // const editUser = (id, newData) => {
-	// 	setUser(
-	// 		user.map((user) => {
-	// 			if (user.id === id) {
-	// 				return newData;
-	// 			}
-	// 			return user;
-	// 		})
-	// 	);
-	// }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
+  // 	setUser(
+  // 		user.map((user) => {
+  // 			if (user.id === id) {
+  // 				return newData;
+  // 			}
+  // 			return user;
+  // 		})
+  // 	);
+  // }; /*THESE LINES OF CODES ARE WITHOUT REDUX */
 
 
-// const AddNewUser =(info)=>{
-//   info.id = Math.random().toString();
-//   setUser([...user,info])
-//   console.log(AddNewUser);
-// }
+  // const AddNewUser =(info)=>{
+  //   info.id = Math.random().toString();
+  //   setUser([...user,info])
+  //   console.log(AddNewUser);
+  // }
 
 
   return (
-   <>
-  <Container className='container'>
-    <Row>
-      <Col xm={4}>
-        <AddUserForm 
-        // newUser={AddNewUser}  /*THIS LINE OF CODES IS WITHOUT REDUX */
-        className="dataflex"
-        />
-      </Col>
-      {/* <Col></Col> */}
-      <Col xm={8}>
-      <Users 
-      // userData={user} 
-      // deleteUser={deleteUser}
-      //  editUser={editUser}  /*THESE LINES OF CODES ARE WITHOUT REDUX */
-       />
-      </Col>
-    </Row>
-  </Container>
-   </>
+    <>
+      <Container className='container'>
+        <Routing />
+      </Container>
+    </>
 
   );
 }
@@ -117,3 +115,36 @@ useEffect(()=> {
 
 export default App;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <Row>
+// <Col xm={4}>
+//   <AddUserForm 
+//   // newUser={AddNewUser}  /*THIS LINE OF CODES IS WITHOUT REDUX */
+//   className="dataflex"
+//   />
+// </Col>
+// {/* <Col></Col> */}
+// <Col xm={8}>
+// <Users 
+// // userData={user} 
+// // deleteUser={deleteUser}
+// //  editUser={editUser}  /*THESE LINES OF CODES ARE WITHOUT REDUX */
+//  />
+// </Col>
+// </Row>
